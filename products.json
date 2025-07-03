@@ -1,0 +1,37 @@
+[{
+        "id": 1,
+        "name": "Patnership Free",
+        "category": "patnership",
+        "description": "Webinar informatif tentang kehidupan kampus dan karir",
+        "price": "Gratis",
+        "image": "images/webinar.jpg",
+        "waMessage": "Halo kak, aku  mau daftar Webinar Kampus. Bisa dibantu ya?"
+    },
+    {
+        "id": 2,
+        "name": "Konsultasi Akademik",
+        "category": "konsultasi",
+        "description": "Konsultasi masalah akademik dengan mentor berpengalaman",
+        "price": "Rp 150.000/sesi",
+        "image": "images/konsultasi.jpg",
+        "waMessage": "Halo kak, aku mau booking Konsultasi Akademik. Bisa dibantu ya?"
+    },
+    {
+        "id": 3,
+        "name": "Desain Poster",
+        "category": "desain",
+        "description": "Jasa desain poster untuk acara kampus atau organisasi",
+        "price": "Rp 100.000/poster",
+        "image": "images/desain.jpg",
+        "waMessage": "Halo kak, aku mau pesan Jasa Desain Poster. Bisa dibantu ya?"
+    },
+    {
+        "id": 4,
+        "name": "Workshop CV Building",
+        "category": "webinar",
+        "description": "Pelatihan membuat CV yang menarik untuk fresh graduate",
+        "price": "Rp 75.000",
+        "image": "images/workshop.jpg",
+        "waMessage": "Halo kak, aku mau ikut Workshop CV Building. Bisa dibantu ya?"
+    }
+]
