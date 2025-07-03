@@ -1,6 +1,8 @@
 # 🎓 ABOUT CAMPUS ID
 
-**ABOUT CAMPUS ID** adalah website informasi layanan penyebaran event dan volunteer kampus melalui media sosial. Dibuat untuk memudahkan mahasiswa dalam menemukan kegiatan dan mempromosikan event dengan antarmuka modern dan responsif.
+**ABOUT CAMPUS ID** adalah platform penyedia informasi seputar aktivitas kampus di Indonesia, yang ditujukan untuk calon mahasiswa, mahasiswa aktif, hingga alumni. Website ini menyajikan layanan penyebaran informasi event, volunteer, dan kegiatan kampus lainnya melalui media sosial. Dirancang dengan antarmuka modern dan responsif, platform ini memudahkan mahasiswa dalam menemukan, mengikuti, dan mempromosikan berbagai kegiatan kampus secara efisien.
+
+
 
 🔗 **Live Demo:** [aboutcampusid.surge.sh](https://aboutcampusid.surge.sh)
 
