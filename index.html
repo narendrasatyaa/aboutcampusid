@@ -1,105 +1,351 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Campus ID - Informasi & Aktivitas Seputar Dunia Kampus</title>
-    <link rel="shortcut icon" href="./images/logo-aboutcampus.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="./images/logo-bg.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./images//logo-bg.png type="image/x-icon">
+    <title>About Campus ID - Solusi Dunia Pendidikan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="images/logo-aboutcampus.jpg" alt="AboutCampus Logo">
+
+<!-- HEADER -->
+<header id="header">
+    <div class="bar">
+        <div class="logo">
+            <div class="logo-icon">
+                <img src="./images/logo-bg.png" alt="About Campus ID Logo">
             </div>
-            <nav>
+        </div>
+        <nav id="nav">
+            <ul>
+                <li><a href="#layanan">Layanan</a></li>
+                <li><a href="#keunggulan">Keunggulan</a></li>
+                <li><a href="#testimoni">Testimoni</a></li>
+                <li><a href="https://drive.google.com/file/d/1e0aiAnv6rpkgbUYmo4UCUOvoE4NCTDTZ/view" target="_blank">Panduan</a></li>
+                <li><a href="#kontak" class="nav-cta">Hubungi Kami</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg"><div class="hero-grid"></div></div>
+    <div class="hero-inner">
+        <div class="hero-content">
+            <!-- <div class="hero-tag"><i class="fas fa-circle" style="color:var(--teal);font-size:6px;"></i> Platform Edukasi & Kolaborasi Indonesia</div> -->
+            <h1>Solusi Lengkap untuk <em>Dunia Kampus</em></h1>
+            <p class="hero-sub">About Campus ID hadir sebagai mitra terpercaya untuk mahasiswa, organisasi, dan institusi pendidikan - dari media, mentorship, riset, hingga store.</p>
+            <div class="hero-btns">
+                <a href="#layanan" class="btn-primary"><i class="fas fa-compass"></i> Lihat Layanan</a>
+                <a href="https://wa.me/6285226446178" class="btn-ghost" target="_blank"><i class="fab fa-whatsapp"></i> Chat WhatsApp</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-num">15.9rb</div>
+                    <div class="stat-label">Pengikut IG</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">500+</div>
+                    <div class="stat-label">Event Dipublikasikan</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">3+</div>
+                    <div class="stat-label">Lini Layanan Unggulan</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card-stack">
+                <!-- <div class="float-badge">🎓 Platform #1</div> -->
+                <div class="hcard hcard-main">
+                    <div class="hcard-label">FEATURED SERVICE</div>
+                    <div class="hcard-title">Media Officer Partnership</div>
+                    <div class="hcard-desc">Publikasi event kampus ke 15.9rb+ audiens aktif. Jangkauan luas, hasil nyata.</div>
+                </div>
+                <div class="hcard-row">
+                    <div class="hcard hcard-sm">
+                        <div class="icon ic-teal"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <strong>Academy</strong>
+                        <p>Mentorship & kelas intensif</p>
+                    </div>
+                    <div class="hcard hcard-sm">
+                        <div class="icon ic-orange"><i class="fas fa-flask"></i></div>
+                        <strong>Research</strong>
+                        <p>Riset & konsultasi akademik</p>
+                    </div>
+                    <div class="hcard hcard-sm">
+                        <div class="icon ic-blue"><i class="fas fa-store"></i></div>
+                        <strong>Store</strong>
+                        <p>Produk & merchandise</p>
+                    </div>
+                    <div class="hcard hcard-sm">
+                        <div class="icon ic-purple"><i class="fas fa-handshake"></i></div>
+                        <strong>Partner</strong>
+                        <p>Gratis & berbayar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS BAND -->
+<!-- <div class="stats-band">
+    <div class="stats-inner">
+        <div>
+            <div class="sband-num">15.9rb+</div>
+            <div class="sband-label">Pengikut Instagram</div>
+        </div>
+        <div>
+            <div class="sband-num">500+</div>
+            <div class="sband-label">Event Dipublikasikan</div>
+        </div>
+        <div>
+            <div class="sband-num">60%</div>
+            <div class="sband-label">Rata-rata Peningkatan Peserta</div>
+        </div>
+        <div>
+            <div class="sband-num">4</div>
+            <div class="sband-label">Lini Layanan Unggulan</div>
+        </div>
+    </div>
+</div> -->
+
+<!-- LAYANAN -->
+<section id="layanan">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="sec-label">Layanan Kami</div>
+            <h2 class="sec-title">4 Pilar Utama <em>About Campus ID</em></h2>
+            <p class="sec-sub">Dari publikasi event hingga mentorship karir - kami siap mendukung perjalanan akademik dan profesionalmu.</p>
+        </div>
+        <div class="services-grid">
+
+            <!-- 1 -->
+            <div class="srv-card">
+                <div class="srv-num">01</div>
+                <div class="srv-icon" style="background:rgba(0,201,167,0.12);color:var(--teal);">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3>Media Officer Partnership</h3>
+                <p>Kami menjadi media partner resmi untuk event kampus, lomba, seminar, webinar, dan kegiatan organisasi. Publikasi menjangkau 15.9rb+ audiens aktif mahasiswa seluruh Indonesia melalui Instagram @aboutcampus_id dan platform kami.</p>
+                <div class="srv-tags">
+                    <span class="tag">Event Kampus</span>
+                    <span class="tag">Lomba Nasional</span>
+                    <span class="tag">Webinar</span>
+                    <span class="tag">Media Partner Gratis</span>
+                    <span class="tag">Media Partner Berbayar</span>
+                </div>
+                <a href="https://wa.me/6285226446178?text=Halo%20kak%2C%20saya%20tertarik%20dengan%20layanan%20Media%20Officer%20Partnership.%20Bisa%20dijelaskan%20lebih%20lanjut%3F" class="srv-link" target="_blank">Mulai Partnership <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- 2 -->
+            <div class="srv-card">
+                <div class="srv-num">02</div>
+                <div class="srv-icon" style="background:rgba(255,107,53,0.12);color:var(--orange);">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3>Academy & Mentorship</h3>
+                <p>Program belajar dan bimbingan intensif untuk mahasiswa yang ingin berkembang - mulai dari pengembangan karir, softskill, hingga persiapan dunia kerja. Dipandu oleh mentor berpengalaman di bidangnya.</p>
+                <div class="srv-tags">
+                    <span class="tag">Mentorship 1-on-1</span>
+                    <span class="tag">Kelas Online</span>
+                    <span class="tag">Pengembangan Karir</span>
+                    <span class="tag">Softskill</span>
+                    <span class="tag">Sertifikasi</span>
+                </div>
+                <a href="https://wa.me/6285226446178?text=Halo%20kak%2C%20saya%20tertarik%20dengan%20program%20Academy%20%26%20Mentorship.%20Bisa%20info%20lebih%20lanjut%3F" class="srv-link" target="_blank">Daftar Sekarang <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- 3 -->
+            <div class="srv-card">
+                <div class="srv-num">03</div>
+                <div class="srv-icon" style="background:rgba(52,152,219,0.12);color:#3498db;">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h3>Research & Consulting</h3>
+                <p>Layanan riset dan konsultasi untuk kebutuhan akademik maupun institusional. Kami membantu analisis data, penyusunan laporan, konsultasi skripsi/tesis, dan strategi pengembangan organisasi berbasis data.</p>
+                <div class="srv-tags">
+                    <span class="tag">Konsultasi Skripsi</span>
+                    <span class="tag">Analisis Data</span>
+                    <span class="tag">Riset Institusi</span>
+                    <span class="tag">Laporan Akademik</span>
+                    <span class="tag">Strategi Organisasi</span>
+                </div>
+                <a href="https://wa.me/6285226446178?text=Halo%20kak%2C%20saya%20butuh%20layanan%20Research%20%26%20Consulting.%20Bisa%20ceritakan%20lebih%20lanjut%3F" class="srv-link" target="_blank">Konsultasi Gratis <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- 4 -->
+            <div class="srv-card">
+                <div class="srv-num">04</div>
+                <div class="srv-icon" style="background:rgba(155,89,182,0.12);color:#9b59b6;">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h3>Official Store</h3>
+                <p>Temukan berbagai produk berkualitas dari About Campus ID - mulai dari merchandise eksklusif, template desain, modul belajar digital, hingga produk kolaborasi bersama komunitas kampus terbaik di Indonesia.</p>
+                <div class="srv-tags">
+                    <span class="tag">Merchandise</span>
+                    <span class="tag">Template Desain</span>
+                    <span class="tag">E-book & Modul</span>
+                    <span class="tag">Produk Kolaborasi</span>
+                    <span class="tag">Exclusive Items</span>
+                </div>
+                <a href="https://wa.me/6285226446178?text=Halo%20kak%2C%20saya%20mau%20tanya%20tentang%20Official%20Store%20About%20Campus%20ID." class="srv-link" target="_blank">Lihat Produk <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- KEUNGGULAN -->
+<section id="keunggulan">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="sec-label">Mengapa Kami</div>
+            <h2 class="sec-title" style="color:white;">Keunggulan yang <em>Membedakan Kami</em></h2>
+            <p class="sec-sub" style="color:rgba(255,255,255,0.5);">Kami bukan sekadar platform - kami mitra pertumbuhan yang hadir di setiap langkah perjalananmu.</p>
+        </div>
+        <div class="adv-grid">
+            <div class="adv-card">
+                <div class="adv-icon"><i class="fas fa-clock"></i></div>
+                <h4>Tepat Waktu & Fleksibel</h4>
+                <p>Layanan disesuaikan dengan jadwal dan kebutuhanmu, tanpa ribet dan prosedur berbelit.</p>
+            </div>
+            <div class="adv-card">
+                <div class="adv-icon"><i class="fas fa-bullseye"></i></div>
+                <h4>Efektif & Tepat Sasaran</h4>
+                <p>Konten dan layanan dirancang khusus untuk menyasar kebutuhan nyata mahasiswa dan institusi.</p>
+            </div>
+            <div class="adv-card">
+                <div class="adv-icon"><i class="fas fa-globe-asia"></i></div>
+                <h4>Jangkauan Luas</h4>
+                <p>Dapat diakses dari mana saja dan menjangkau seluruh kampus di Indonesia melalui jaringan kami.</p>
+            </div>
+            <div class="adv-card">
+                <div class="adv-icon"><i class="fas fa-users"></i></div>
+                <h4>Komunitas Aktif</h4>
+                <p>Terhubung dengan ribuan mahasiswa aktif dari ratusan kampus di seluruh Indonesia.</p>
+            </div>
+            <div class="adv-card">
+                <div class="adv-icon"><i class="fas fa-medal"></i></div>
+                <h4>Terpercaya & Berpengalaman</h4>
+                <p>Telah membantu ratusan event dan program kampus sejak 2021 dengan track record yang terbukti.</p>
+            </div>
+            <div class="adv-card">
+                <div class="adv-icon"><i class="fas fa-headset"></i></div>
+                <h4>Support Responsif</h4>
+                <p>Tim kami siap membantu dan merespons setiap pertanyaan dengan cepat melalui WhatsApp.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONI -->
+<section id="testimoni">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="sec-label">Testimoni</div>
+            <h2 class="sec-title">Apa Kata <em>Mereka?</em></h2>
+            <p class="sec-sub">Kepercayaan ribuan mahasiswa dan panitia event adalah motivasi terbesar kami.</p>
+        </div>
+        <div class="testi-grid">
+            <div class="testi-card">
+                <div class="quote-icon">"</div>
+                <p class="testi-text">Maturnuwun ya mas udah mau bantu publikasi, semoga aboutcampus_id makin maju dan semakin bermanfaat bagi banyak orang.</p>
+                <div class="testi-author">
+                    <div class="testi-avatar">IL</div>
+                    <div>
+                        <div class="testi-name">Ilyas</div>
+                        <div class="testi-role">Panitia Seminar Nasional UMS</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="quote-icon">"</div>
+                <p class="testi-text">Makasih banget ya kak udah mau bantu publikasi. Program seminar di kampusku jadi dapet peserta banyak banget, bahkan sampai overload!</p>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background:linear-gradient(135deg,var(--orange),var(--orange2));">DV</div>
+                    <div>
+                        <div class="testi-name">Devia</div>
+                        <div class="testi-role">Panitia Seminar Nasional 2022</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="quote-icon">"</div>
+                <p class="testi-text">Berkat bantuan publikasi dari About Campus ID, peserta lomba bisnis plan kami meningkat 60%! Luar biasa dan sangat profesional.</p>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background:linear-gradient(135deg,#9b59b6,#6c3483);">SA</div>
+                    <div>
+                        <div class="testi-name">Siti Aminah</div>
+                        <div class="testi-role">Panitia Bisnis Plan Nasional 2021</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+    <div class="wrap">
+        <h2>Siap Berkolaborasi <em>Bersama Kami?</em></h2>
+        <p>Hubungi tim kami sekarang dan dapatkan solusi terbaik untuk kebutuhan kampusmu.</p>
+        <a href="https://wa.me/6285226446178?text=Halo%20kak%20About%20Campus%20ID%2C%20saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20layanan%20kalian." class="wa-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat di WhatsApp
+        </a>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="kontak">
+    <div class="wrap">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo" style="color:white;">
+                    <div class="logo-icon">
+                        <img src="./images/logo-bg.png" alt="About Campus ID Logo">
+                    </div>
+                </div>
+                <p>Platform penyedia layanan edukasi, media, mentorship, riset, dan store untuk mahasiswa dan profesional di seluruh Indonesia.</p>
+                <div class="footer-socials">
+                    <a href="https://instagram.com/aboutcampus_id" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://instagram.com/aboutcampusacademy" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://wa.me/6285226446178" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:aboutcampusacademy@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Layanan</h4>
                 <ul>
-                    <li><a href="#layanan">Layanan</a></li>
-                    <li><a href="#testimoni">Testimoni</a></li>
-                    <li><a href="#kontak">Kontak</a></li>
-                    <li><a href="https://drive.google.com/file/d/1e0aiAnv6rpkgbUYmo4UCUOvoE4NCTDTZ/view">Panduan</a></li>
+                    <li><a href="#layanan">Media Officer Partnership</a></li>
+                    <li><a href="#layanan">Academy & Mentorship</a></li>
+                    <li><a href="#layanan">Research & Consulting</a></li>
+                    <li><a href="#layanan">Official Store</a></li>
+                    <li><a href="https://drive.google.com/file/d/1e0aiAnv6rpkgbUYmo4UCUOvoE4NCTDTZ/view" target="_blank">Panduan Media Partner</a></li>
                 </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1>Solusi Dunia Pendidikan</h1>
-            <p>Partnership dan Konsultasi</p>
-            <a href="#layanan" class="cta-button">Lihat Layanan Kami</a>
-        </section>
-
-        <center>
-            <section id="layanan" class="services">
-                <h2>Layanan Kami</h2>
-                <div class="filter-buttons">
-                    <!-- <button class="filter-btn active" data-filter="all">Semua</button> -->
-                    <!-- <button class="filter-btn" data-filter="partnership">Partnership</button> -->
-                    <!-- <button class="filter-btn" data-filter="konsultasi">Konsultasi</button>x -->
-                    <!-- <button class="filter-btn" data-filter="desain">Desain</button> -->
-                </div>
-                <div class="products-container">
-                    <!-- Produk di file JSON -->
-                </div>
-            </section>
-        </center>
-        <section id="keunggulan" class="keunggulan">
-            <h2>Keunggulan</h2>
-            <div class="advantage-grid">
-
             </div>
-        </section>
-
-
-        <!-- Testimoni Section -->
-        <section id="testimoni" class="testimonials">
-            <h2>Apa Kata Mereka?</h2>
-            <div class="testimonial-grid">
-                <!-- Testimonial cards -->
-            </div>
-        </section>
-
-
-
-    </main>
-
-    <footer id="kontak">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section about">
-                    <h3>Tentang AboutCampus</h3>
-                    <p>Platform penyedia layanan edukasi dan kreatif untuk mahasiswa dan profesional.</p>
-                </div>
-                <div class="footer-section links">
-                    <h3>Tautan Cepat</h3>
-                    <ul>
-                        <li><a href="#layanan">Layanan</a></li>
-                        <li><a href="#testimoni">Testimoni</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section contact">
-                    <h3>Hubungi Kami</h3>
-                    <p><i class="fas fa-phone"></i> +62 852-2644-6178</p>
-                    <a href="https://wa.me/+6286226446178">
-                        <p><i class="fab fa-whatsapp"></i> WhatsApp</p>
-                    </a>
-                    <p><i class="fas fa-envelope"></i>Aboutcampusacademy@gmail.com</p>
-                </div>
-
+            <div>
+                <h4>Hubungi Kami</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-phone"></i> +62 852-2644-6178</li>
+                    <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/6285226446178" target="_blank">WhatsApp</a></li>
+                    <li><i class="fas fa-envelope"></i> Aboutcampusacademy@gmail.com</li>
+                    <li><i class="fab fa-instagram"></i> <a href="https://instagram.com/aboutcampus_id" target="_blank">@aboutcampus_id</a></li>
+                </ul>
             </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2021 About Campus ID. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
+    <div class="copyright">&copy; 2021–2026 About Campus ID. All rights reserved.</div>
+</footer>
 
-    <script src="js/script.js"></script>
+<script src="./js/script.js">
+</script>
 </body>
-
 </html>
