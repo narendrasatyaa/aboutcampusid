@@ -1,0 +1,34 @@
+{
+  "name": "aboutcampusid",
+  "version": "1.0.0",
+  "description": "**ABOUT CAMPUS ID** adalah platform penyedia informasi seputar aktivitas kampus di Indonesia, yang ditujukan untuk calon mahasiswa, mahasiswa aktif, hingga alumni. Website ini menyajikan layanan penyebaran informasi event, volunteer, dan kegiatan kampus lainnya melalui media sosial. Dirancang dengan antarmuka modern dan responsif, platform ini memudahkan mahasiswa dalam menemukan, mengikuti, dan mempromosikan berbagai kegiatan kampus secara efisien.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/narendrasatyaa/aboutcampusid.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/narendrasatyaa/aboutcampusid/issues"
+  },
+  "homepage": "https://github.com/narendrasatyaa/aboutcampusid#readme",
+  "dependencies": {
+    "@prisma/client": "^6.7.0",
+    "bcryptjs": "^3.0.3",
+    "next": "^16.2.2",
+    "prisma": "^6.7.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "zod": "^4.3.6"
+  }
+}
