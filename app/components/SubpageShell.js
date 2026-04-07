@@ -105,7 +105,9 @@ export default function SubpageShell({ children }) {
                   </div>
                 </li>
                 <li className="nav-has-submenu">
-                  <span className="nav-parent">Informasi <i className="fas fa-chevron-down" /></span>
+                  <span className="nav-parent">
+                    Informasi <i className="fas fa-chevron-down" />
+                  </span>
                   <div className="nav-mega-panel nav-mega-info">
                     <div className="nav-mega-head">
                       <div className="nav-mega-kicker">Informasi</div>
@@ -127,6 +129,15 @@ export default function SubpageShell({ children }) {
                 </li>
                 <li><a href="/" className="nav-cta">Kembali Beranda</a></li>
               </ul>
+              <div className="nav-mobile-links">
+                <a href="/">Beranda</a>
+                <a href="/partnership">Partnership</a>
+                <a href="/order">Order</a>
+                <a href="/layanan/partnership">Layanan</a>
+                <a href="/layanan/research">Research</a>
+                <a href="/layanan/store">Store</a>
+                <a href="#kontak">Kontak</a>
+              </div>
             </nav>
             <button
               type="button"

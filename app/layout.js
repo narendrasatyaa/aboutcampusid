@@ -1,9 +1,41 @@
 import "./globals.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aboutcampusid.my.id";
+
 export const metadata = {
-  title: "About Campus ID - Solusi Dunia Pendidikan",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "About Campus ID | Media Officer Partnership, Riset, dan Official Store",
+    template: "%s | About Campus ID",
+  },
   description:
-    "Platform edukasi, media partner, mentorship, riset, dan store untuk mahasiswa Indonesia.",
+    "About Campus ID adalah platform media partner kampus, publikasi event, riset, consulting, dan official store untuk mahasiswa Indonesia.",
+  keywords: [
+    "About Campus ID",
+    "media partner kampus",
+    "publikasi event kampus",
+    "partnership kampus",
+    "riset kampus",
+    "official store mahasiswa",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    siteName: "About Campus ID",
+    locale: "id_ID",
+    title: "About Campus ID | Media Officer Partnership, Riset, dan Official Store",
+    description:
+      "About Campus ID adalah platform media partner kampus, publikasi event, riset, consulting, dan official store untuk mahasiswa Indonesia.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Campus ID | Media Officer Partnership, Riset, dan Official Store",
+    description:
+      "About Campus ID adalah platform media partner kampus, publikasi event, riset, consulting, dan official store untuk mahasiswa Indonesia.",
+  },
 };
 
 export default function RootLayout({ children }) {
