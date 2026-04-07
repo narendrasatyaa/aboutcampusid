@@ -1,19 +1,19 @@
 import { z } from "zod";
 import { prisma } from "../../../../lib/prisma";
+import {
+  ADMIN_SESSION_COOKIE,
+  verifyAdminKeyValue,
+  verifyAdminSessionToken,
+} from "../../../../lib/admin-auth";
 
-function verifyAdminKey(request) {
+function verifyAdminAccess(request) {
+  const sessionToken = request.cookies.get(ADMIN_SESSION_COOKIE)?.value;
+  if (verifyAdminSessionToken(sessionToken)) {
+    return { ok: true };
+  }
+
   const reqKey = request.headers.get("x-admin-key");
-  const envKey = process.env.ADMIN_DASHBOARD_KEY;
-
-  if (!envKey) {
-    return { ok: false, message: "ADMIN_DASHBOARD_KEY belum diatur" };
-  }
-
-  if (!reqKey || reqKey !== envKey) {
-    return { ok: false, message: "Admin key tidak valid" };
-  }
-
-  return { ok: true };
+  return verifyAdminKeyValue(reqKey);
 }
 
 const patchSchema = z.object({
@@ -22,7 +22,7 @@ const patchSchema = z.object({
 });
 
 export async function GET(request) {
-  const auth = verifyAdminKey(request);
+  const auth = verifyAdminAccess(request);
   if (!auth.ok) {
     return Response.json({ error: auth.message }, { status: 401 });
   }
@@ -36,7 +36,7 @@ export async function GET(request) {
 }
 
 export async function PATCH(request) {
-  const auth = verifyAdminKey(request);
+  const auth = verifyAdminAccess(request);
   if (!auth.ok) {
     return Response.json({ error: auth.message }, { status: 401 });
   }
