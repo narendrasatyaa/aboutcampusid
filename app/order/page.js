@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import SubpageShell from "../components/SubpageShell";
 import {
@@ -24,7 +24,7 @@ const initialForm = {
   notes: "",
 };
 
-export default function OrderPage() {
+function OrderPageContent() {
   const searchParams = useSearchParams();
   const selectedPlan = searchParams.get("plan") === "PAID" ? "PAID" : "FREE";
   const [form, setForm] = useState(initialForm);
@@ -437,5 +437,13 @@ export default function OrderPage() {
         </div>
       </section>
     </SubpageShell>
+  );
+}
+
+export default function OrderPage() {
+  return (
+    <Suspense fallback={null}>
+      <OrderPageContent />
+    </Suspense>
   );
 }

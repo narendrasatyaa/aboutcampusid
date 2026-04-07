@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { prisma } from "../../../../lib/prisma";
+import { prisma } from "../../../../../lib/prisma";
 import {
   ADMIN_SESSION_COOKIE,
   verifyAdminKeyValue,
   verifyAdminSessionToken,
-} from "../../../../lib/admin-auth";
+} from "../../../../../lib/admin-auth";
 
 function verifyAdminAccess(request) {
   const sessionToken = request.cookies.get(ADMIN_SESSION_COOKIE)?.value;
@@ -17,8 +17,6 @@ function verifyAdminAccess(request) {
 }
 
 const patchSchema = z.object({
-  orderId: z.string().min(1),
-  status: z.enum(["NEW", "PROCESSING", "DONE", "CANCELED"]).optional(),
   customerName: z.string().min(2).optional(),
   phone: z.string().min(9).optional(),
   serviceType: z.string().min(2).optional(),
@@ -27,32 +25,41 @@ const patchSchema = z.object({
   orderDetails: z.string().optional().nullable(),
   notes: z.string().max(500).optional().nullable(),
   paymentProofFileName: z.string().optional().nullable(),
+  status: z.enum(["NEW", "PROCESSING", "DONE", "CANCELED"]).optional(),
 });
 
-const deleteSchema = z.object({
-  orderId: z.string().min(1),
-});
-
-export async function GET(request) {
+export async function GET(request, { params }) {
   const auth = verifyAdminAccess(request);
   if (!auth.ok) {
     return Response.json({ error: auth.message }, { status: 401 });
   }
 
-  const orders = await prisma.order.findMany({
-    orderBy: { createdAt: "desc" },
-    take: 100,
+  const { orderId } = await params;
+
+  const order = await prisma.order.findUnique({
+    where: { id: orderId },
+    include: {
+      logs: {
+        orderBy: { createdAt: "desc" },
+        take: 30,
+      },
+    },
   });
 
-  return Response.json({ orders });
+  if (!order) {
+    return Response.json({ error: "Order tidak ditemukan" }, { status: 404 });
+  }
+
+  return Response.json({ order });
 }
 
-export async function PATCH(request) {
+export async function PATCH(request, { params }) {
   const auth = verifyAdminAccess(request);
   if (!auth.ok) {
     return Response.json({ error: auth.message }, { status: 401 });
   }
 
+  const { orderId } = await params;
   const body = await request.json();
   const parsed = patchSchema.safeParse(body);
 
@@ -61,7 +68,6 @@ export async function PATCH(request) {
   }
 
   const {
-    orderId,
     customerName,
     phone,
     serviceType,
@@ -104,20 +110,16 @@ export async function PATCH(request) {
   return Response.json({ ok: true, order: updated });
 }
 
-export async function DELETE(request) {
+export async function DELETE(request, { params }) {
   const auth = verifyAdminAccess(request);
   if (!auth.ok) {
     return Response.json({ error: auth.message }, { status: 401 });
   }
 
-  const body = await request.json();
-  const parsed = deleteSchema.safeParse(body);
-  if (!parsed.success) {
-    return Response.json({ error: "Payload delete tidak valid" }, { status: 400 });
-  }
+  const { orderId } = await params;
 
   const order = await prisma.order.findUnique({
-    where: { id: parsed.data.orderId },
+    where: { id: orderId },
     select: { id: true },
   });
 
@@ -125,7 +127,6 @@ export async function DELETE(request) {
     return Response.json({ error: "Order tidak ditemukan" }, { status: 404 });
   }
 
-  await prisma.order.delete({ where: { id: parsed.data.orderId } });
-
+  await prisma.order.delete({ where: { id: orderId } });
   return Response.json({ ok: true });
 }

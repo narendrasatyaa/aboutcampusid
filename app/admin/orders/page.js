@@ -12,6 +12,7 @@ export default function AdminOrdersPage() {
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
+  const [deletingOrderId, setDeletingOrderId] = useState("");
 
   async function loadOrders() {
     setLoading(true);
@@ -73,6 +74,38 @@ export default function AdminOrdersPage() {
     }
   }
 
+  async function deleteOrder(orderId, orderNumber) {
+    const ok = window.confirm(`Hapus order ${orderNumber}? Tindakan ini tidak bisa dibatalkan.`);
+    if (!ok) return;
+
+    setDeletingOrderId(orderId);
+    try {
+      const response = await fetch("/api/admin/orders", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ orderId }),
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        if (response.status === 401) {
+          router.replace("/admin/login");
+          return;
+        }
+        alert(result.error || "Gagal menghapus order.");
+        return;
+      }
+
+      setOrders((prev) => prev.filter((order) => order.id !== orderId));
+    } catch {
+      alert("Server error saat hapus order");
+    } finally {
+      setDeletingOrderId("");
+    }
+  }
+
   async function handleLogout() {
     await fetch("/api/admin/login", { method: "DELETE" });
     router.replace("/admin/login");
@@ -89,6 +122,8 @@ export default function AdminOrdersPage() {
       order.phone,
       order.serviceType,
       order.instagramUsername,
+      order.orderDetails,
+      order.notes,
     ]
       .filter(Boolean)
       .some((item) => String(item).toLowerCase().includes(q));
@@ -106,7 +141,7 @@ export default function AdminOrdersPage() {
   return (
     <main className="admin-wrap">
       <h1>Dashboard Order Admin</h1>
-      <p>Kelola order, update status, dan pantau progress order masuk.</p>
+      <p>Kelola order, update status, lihat detail lengkap, dan hapus order jika diperlukan.</p>
 
       <div className="admin-auth-row">
         <button type="button" onClick={loadOrders}>
@@ -141,7 +176,7 @@ export default function AdminOrdersPage() {
           type="text"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Cari: nomor order, nama, WA, layanan, IG"
+          placeholder="Cari: nomor order, nama, WA, layanan, IG, detail"
         />
         <select
           value={statusFilter}
@@ -168,11 +203,9 @@ export default function AdminOrdersPage() {
               <th>WA</th>
               <th>Layanan</th>
               <th>Tipe</th>
-              <th>IG User</th>
-              <th>Follow</th>
-              <th>Like Confirm</th>
               <th>Status</th>
               <th>Dibuat</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -183,9 +216,6 @@ export default function AdminOrdersPage() {
                 <td>{order.phone}</td>
                 <td>{order.serviceType}</td>
                 <td>{order.orderType}</td>
-                <td>{order.instagramUsername || "-"}</td>
-                <td>{order.followedAccounts?.length || 0}</td>
-                <td>{order.likeChecklistConfirmed ? "Ya" : "Belum"}</td>
                 <td>
                   <div className="admin-status-cell">
                     <span className={`admin-status-badge admin-status-${order.status.toLowerCase()}`}>
@@ -204,11 +234,26 @@ export default function AdminOrdersPage() {
                   </div>
                 </td>
                 <td>{new Date(order.createdAt).toLocaleString("id-ID")}</td>
+                <td>
+                  <div className="admin-actions-cell">
+                    <a href={`/admin/orders/${order.id}`} className="admin-mini-btn">
+                      Detail
+                    </a>
+                    <button
+                      type="button"
+                      className="admin-mini-btn danger"
+                      disabled={deletingOrderId === order.id}
+                      onClick={() => deleteOrder(order.id, order.orderNumber)}
+                    >
+                      {deletingOrderId === order.id ? "Menghapus..." : "Hapus"}
+                    </button>
+                  </div>
+                </td>
               </tr>
             ))}
             {!filteredOrders.length && !loading && (
               <tr>
-                <td colSpan={10}>Belum ada data order.</td>
+                <td colSpan={8}>Belum ada data order.</td>
               </tr>
             )}
           </tbody>
