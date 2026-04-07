@@ -1,6 +1,11 @@
 import { z } from "zod";
 import { prisma } from "../../../lib/prisma";
 import { sendWhatsAppNotification } from "../../../lib/whatsapp";
+import {
+  FOLLOW_TARGET_ACCOUNT,
+  REQUIRED_FOLLOW_COUNT,
+  normalizeInstagramHandle,
+} from "../../../lib/partnership-requirements";
 
 const orderSchema = z.object({
   customerName: z.string().min(2, "Nama minimal 2 karakter"),
@@ -9,6 +14,15 @@ const orderSchema = z.object({
     .min(9, "Nomor WA tidak valid")
     .regex(/^[0-9+]+$/, "Nomor WA hanya boleh angka dan tanda +"),
   serviceType: z.string().min(2),
+  orderType: z.enum(["FREE", "PAID"]).default("FREE"),
+  instagramUsername: z.string().optional().or(z.literal("")),
+  followChecklistConfirmed: z.boolean().optional().default(false),
+  likeChecklistConfirmed: z.boolean().optional().default(false),
+  followedAccounts: z.array(z.string()).optional().default([]),
+  likedPosts: z.array(z.string()).optional().default([]),
+  orderDetails: z.string().min(8, "Detail order minimal 8 karakter"),
+  paymentProofFileName: z.string().optional().or(z.literal("")),
+  posterFileNames: z.array(z.string()).max(5, "Maksimal upload poster 5 file").optional().default([]),
   notes: z.string().max(500).optional().or(z.literal("")),
 });
 
@@ -37,12 +51,79 @@ export async function POST(request) {
 
     const orderNumber = createOrderNumber();
 
+    const followedAccounts = (parsed.data.followedAccounts || [])
+      .map(normalizeInstagramHandle)
+      .filter(Boolean);
+    const likedPosts = (parsed.data.likedPosts || [])
+      .map((item) => item.trim())
+      .filter(Boolean);
+    const posterFileNames = (parsed.data.posterFileNames || [])
+      .map((item) => item.trim())
+      .filter(Boolean);
+
+    if (posterFileNames.length === 0) {
+      return Response.json(
+        {
+          error: "Minimal upload 1 poster",
+        },
+        { status: 400 }
+      );
+    }
+
+    if (parsed.data.orderType === "FREE") {
+      if (!parsed.data.instagramUsername?.trim()) {
+        return Response.json(
+          {
+            error: "Username Instagram wajib diisi untuk paket FREE",
+          },
+          { status: 400 }
+        );
+      }
+
+      if (!parsed.data.followChecklistConfirmed) {
+        return Response.json(
+          {
+            error: "Checklist konfirmasi follow wajib dicentang",
+          },
+          { status: 400 }
+        );
+      }
+
+      if (!parsed.data.likeChecklistConfirmed) {
+        return Response.json(
+          {
+            error: "Checklist konfirmasi like wajib dicentang",
+          },
+          { status: 400 }
+        );
+      }
+
+      if (followedAccounts.length < REQUIRED_FOLLOW_COUNT) {
+        return Response.json(
+          {
+            error: `Minimal ${REQUIRED_FOLLOW_COUNT} akun panitia harus follow @${FOLLOW_TARGET_ACCOUNT} untuk paket FREE`,
+          },
+          { status: 400 }
+        );
+      }
+
+    }
+
     const order = await prisma.order.create({
       data: {
         orderNumber,
         customerName: parsed.data.customerName,
         phone: parsed.data.phone,
         serviceType: parsed.data.serviceType,
+        orderType: parsed.data.orderType,
+        instagramUsername: parsed.data.instagramUsername || null,
+        followChecklistConfirmed: Boolean(parsed.data.followChecklistConfirmed),
+        likeChecklistConfirmed: Boolean(parsed.data.likeChecklistConfirmed),
+        followedAccounts,
+        likedPosts,
+        orderDetails: parsed.data.orderDetails,
+        paymentProofFileName: parsed.data.paymentProofFileName || null,
+        posterFileNames,
         notes: parsed.data.notes || null,
       },
     });
@@ -62,7 +143,7 @@ export async function POST(request) {
         customerName: order.customerName,
         phone: order.phone,
         serviceType: order.serviceType,
-        notes: order.notes,
+        notes: `${order.notes || "-"}\nType: ${order.orderType}\nDetail: ${order.orderDetails || "-"}\nBukti Bayar: ${order.paymentProofFileName || "-"}\nPoster: ${(order.posterFileNames || []).join(", ") || "-"}\nTarget Admin: @${FOLLOW_TARGET_ACCOUNT}\nFollower Panitia: ${order.followedAccounts.length}\nLike Confirmed: ${order.likeChecklistConfirmed ? "YES" : "NO"}`,
       });
       notificationSent = Boolean(notifyResult.sent);
     } catch {

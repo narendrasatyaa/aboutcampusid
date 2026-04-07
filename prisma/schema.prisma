@@ -20,6 +20,15 @@ model Order {
   customerName String
   phone        String
   serviceType  String
+  orderType    String      @default("FREE")
+  instagramUsername String?
+  followChecklistConfirmed Boolean @default(false)
+  likeChecklistConfirmed Boolean @default(false)
+  followedAccounts String[] @default([])
+  likedPosts   String[]    @default([])
+  orderDetails String?
+  paymentProofFileName String?
+  posterFileNames String[] @default([])
   notes        String?
   status       OrderStatus @default(NEW)
   createdAt    DateTime    @default(now())
