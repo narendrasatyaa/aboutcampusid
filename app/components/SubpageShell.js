@@ -117,14 +117,14 @@ export default function SubpageShell({ children }) {
                 </li>
                 <li><a href="/" className="nav-cta">Kembali Beranda</a></li>
               </ul>
-              <div className="nav-mobile-links">
+              {/* <div className="nav-mobile-links">
                 <a href="/">Beranda</a>
                 <a href="/partnership">Partnership</a>
                 <a href="/order">Order</a>
                 <a href="/layanan/partnership">Layanan</a>
                 <a href="/layanan/research">Research</a>
                 <a href="/layanan/store">Store</a>
-              </div>
+              </div> */}
             </nav>
             <button
               type="button"

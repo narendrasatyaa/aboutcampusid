@@ -900,18 +900,18 @@
             }
             .mobile-bottom-nav {
                 position: fixed;
-                left: 50%;
-                right: auto;
-                transform: translateX(-50%);
-                bottom: 12px;
+                left: 12px;
+                right: 12px;
+                transform: none;
+                bottom: calc(12px + env(safe-area-inset-bottom));
                 z-index: 1300;
-                width: fit-content;
-                max-width: calc(100% - 24px);
+                width: auto;
+                max-width: none;
                 display: flex;
                 justify-content: center;
-                gap: 12px;
-                padding: 10px 12px;
-                border-radius: 20px;
+                gap: 10px;
+                padding: 10px 10px;
+                border-radius: 22px;
                 background: rgba(255,255,255,0.96);
                 border: 1px solid rgba(15,23,42,0.08);
                 box-shadow: 0 16px 36px rgba(15,23,42,0.15);
@@ -921,7 +921,8 @@
             .mobile-bottom-nav a {
                 display: grid;
                 justify-items: center;
-                flex: 0 0 132px;
+                flex: 1 1 0;
+                min-width: 0;
                 gap: 6px;
                 text-decoration: none;
                 color: #64748b;
@@ -941,7 +942,7 @@
                 background: rgba(35,181,181,0.12);
             }
             body {
-                padding-bottom: 100px;
+                padding-bottom: calc(116px + env(safe-area-inset-bottom));
             }
 
             .hero-stats {
@@ -1335,6 +1336,13 @@
             .order-form textarea {
                 font-size: 16px;
                 padding: 12px 14px;
+            }
+            .floating-wa {
+                right: 16px;
+                bottom: calc(92px + env(safe-area-inset-bottom));
+                width: 54px;
+                height: 54px;
+                font-size: 1.55rem;
             }
         }
 
