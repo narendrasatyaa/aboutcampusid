@@ -36,18 +36,6 @@ export default function SubpageShell({ children }) {
       href: "/#keunggulan",
       icon: "fa-bolt",
     },
-    {
-      title: "Testimoni",
-      description: "Feedback pengguna dan panitia.",
-      href: "/#testimoni",
-      icon: "fa-comment-dots",
-    },
-    {
-      title: "Kontak",
-      description: "Jalur komunikasi resmi ke admin.",
-      href: "/#kontak",
-      icon: "fa-address-book",
-    },
   ];
 
   useEffect(() => {
@@ -136,7 +124,6 @@ export default function SubpageShell({ children }) {
                 <a href="/layanan/partnership">Layanan</a>
                 <a href="/layanan/research">Research</a>
                 <a href="/layanan/store">Store</a>
-                <a href="#kontak">Kontak</a>
               </div>
             </nav>
             <button
@@ -158,14 +145,6 @@ export default function SubpageShell({ children }) {
           <a href="/layanan/partnership" className={isServiceActive ? "is-active" : ""}>
             <i className="fas fa-layer-group" />
             <span>Layanan</span>
-          </a>
-          <a href="/#testimoni">
-            <i className="fas fa-comment-dots" />
-            <span>Testimoni</span>
-          </a>
-          <a href="/#kontak">
-            <i className="fas fa-address-book" />
-            <span>Kontak</span>
           </a>
         </nav>
 

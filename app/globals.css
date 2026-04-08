@@ -900,13 +900,16 @@
             }
             .mobile-bottom-nav {
                 position: fixed;
-                left: 12px;
-                right: 12px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
                 bottom: 12px;
                 z-index: 1300;
-                display: grid;
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-                gap: 8px;
+                width: fit-content;
+                max-width: calc(100% - 24px);
+                display: flex;
+                justify-content: center;
+                gap: 12px;
                 padding: 10px 12px;
                 border-radius: 20px;
                 background: rgba(255,255,255,0.96);
@@ -918,6 +921,7 @@
             .mobile-bottom-nav a {
                 display: grid;
                 justify-items: center;
+                flex: 0 0 132px;
                 gap: 6px;
                 text-decoration: none;
                 color: #64748b;
