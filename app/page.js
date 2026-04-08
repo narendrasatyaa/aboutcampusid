@@ -34,18 +34,6 @@ export default function HomePage() {
       href: "#keunggulan",
       icon: "fa-bolt",
     },
-    {
-      title: "Testimoni",
-      description: "Komentar dari panitia dan pengguna layanan.",
-      href: "#testimoni",
-      icon: "fa-comment-dots",
-    },
-    {
-      title: "Kontak",
-      description: "Hubungi admin lewat WhatsApp atau Instagram.",
-      href: "#kontak",
-      icon: "fa-address-book",
-    },
   ];
 
   const advantageItems = [
@@ -186,14 +174,14 @@ export default function HomePage() {
           <i className="fas fa-layer-group" />
           <span>Layanan</span>
         </a>
-        <a href="#testimoni">
+        {/* <a href="#testimoni">
           <i className="fas fa-comment-dots" />
           <span>Testimoni</span>
-        </a>
-        <a href="#kontak">
+        </a> */}
+        {/* <a href="#kontak">
           <i className="fas fa-address-book" />
           <span>Kontak</span>
-        </a>
+        </a> */}
       </nav>
 
       <section className="hero">
