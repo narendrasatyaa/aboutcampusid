@@ -150,6 +150,25 @@ export default function SubpageShell({ children }) {
           </div>
         </header>
 
+        <nav className="mobile-bottom-nav" aria-label="Navigasi mobile">
+          <a href="/">
+            <i className="fas fa-house" />
+            <span>Beranda</span>
+          </a>
+          <a href="/layanan/partnership" className={isServiceActive ? "is-active" : ""}>
+            <i className="fas fa-layer-group" />
+            <span>Layanan</span>
+          </a>
+          <a href="/#testimoni">
+            <i className="fas fa-comment-dots" />
+            <span>Testimoni</span>
+          </a>
+          <a href="/#kontak">
+            <i className="fas fa-address-book" />
+            <span>Kontak</span>
+          </a>
+        </nav>
+
         <main className="subpage-main">{children}</main>
 
         <footer id="kontak">
