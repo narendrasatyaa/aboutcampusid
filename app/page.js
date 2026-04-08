@@ -153,17 +153,17 @@ export default function HomePage() {
               </li>
               <li><a href="#kontak" className="nav-cta">Hubungi Kami</a></li>
             </ul>
-            <div className="nav-mobile-links">
-              <a href="/">Beranda</a>
-              <a href="/partnership">Partnership</a>
-              <a href="/order">Order</a>
-              <a href="/layanan/partnership">Layanan</a>
-              <a href="/layanan/research">Research</a>
-              <a href="/layanan/store">Store</a>
-              <a href="#keunggulan">Keunggulan</a>
-              <a href="#testimoni">Testimoni</a>
-              <a href="#kontak">Kontak</a>
-            </div>
+            {/* <div className="nav-mobile-links"> */}
+              {/* <a href="/">Beranda</a> */}
+              {/* <a href="/partnership">Partnership</a> */}
+              {/* <a href="/order">Order</a> */}
+              {/* <a href="/layanan/partnership">Layanan</a> */}
+              {/* <a href="/layanan/research">Research</a> */}
+              {/* <a href="/layanan/store">Store</a> */}
+              {/* <a href="#keunggulan">Keunggulan</a> */}
+              {/* <a href="#testimoni">Testimoni</a> */}
+              {/* <a href="#kontak">Kontak</a> */}
+            {/* </div> */}
           </nav>
           <button
             type="button"
@@ -176,6 +176,25 @@ export default function HomePage() {
           </button>
         </div>
       </header>
+
+      <nav className="mobile-bottom-nav" aria-label="Navigasi mobile">
+        <a href="/" className="is-active">
+          <i className="fas fa-house" />
+          <span>Beranda</span>
+        </a>
+        <a href="/layanan/partnership">
+          <i className="fas fa-layer-group" />
+          <span>Layanan</span>
+        </a>
+        <a href="#testimoni">
+          <i className="fas fa-comment-dots" />
+          <span>Testimoni</span>
+        </a>
+        <a href="#kontak">
+          <i className="fas fa-address-book" />
+          <span>Kontak</span>
+        </a>
+      </nav>
 
       <section className="hero">
         <div className="hero-bg">
@@ -309,7 +328,7 @@ export default function HomePage() {
       <section id="keunggulan">
         <div className="wrap">
           <div className="sec-head">
-            <div className="sec-label">Mengapa Kami</div>
+            {/* <div className="sec-label">Mengapa Kami</div> */}
             <h2 className="sec-title" style={{ color: "white" }}>Keunggulan yang <em>Membedakan Kami</em></h2>
             <p className="sec-sub" style={{ color: "rgba(255,255,255,0.55)" }}>
               Kami bukan sekadar platform, kami mitra pertumbuhan yang hadir di setiap langkah perjalananmu.
