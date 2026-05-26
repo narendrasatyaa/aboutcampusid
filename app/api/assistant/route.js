@@ -109,7 +109,7 @@ export async function POST(request) {
           title: "Qrok",
           reply:
             process.env.NODE_ENV === "development"
-              ? `Groq gagal merespons: ${groqResponse.status} ${errorText}`
+              ? `Campus Buddy gagal merespons: ${groqResponse.status} ${errorText}`
               : "Sistem AI sedang bermasalah. Coba /menu atau chat admin lewat WhatsApp.",
           suggestions: buildFallbackSuggestions(message),
           links: [

@@ -33,6 +33,9 @@ const websiteJsonLd = {
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: "/images/favicon.ico",
+  },
   title: {
     default: "About Campus ID | Media Officer Partnership, Riset, dan Official Store",
     template: "%s | About Campus ID",

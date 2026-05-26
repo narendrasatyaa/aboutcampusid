@@ -1283,10 +1283,19 @@ footer ul li a:hover {
         font-size: clamp(1.6rem, 4vw, 2.2rem);
     }
 
+    .hero {
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+
     .hero-inner {
         grid-template-columns: 1fr;
         padding: 64px 20px;
         gap: 28px;
+        min-height: 0;
     }
 
     .hero-content {
@@ -2295,6 +2304,7 @@ footer ul li a:hover {
     .hero-inner {
         padding: 56px 16px;
         gap: 22px;
+        min-height: 0;
     }
 
     .hero h1 {
