@@ -68,7 +68,7 @@ export async function POST(request) {
           mode: "fallback",
           title: "Qrok",
           reply:
-            "Groq belum diatur. Saya bisa bantu seputar website dan layanan About Campus ID, atau pilih /menu untuk melihat shortcut.",
+            "Campus Buddy belum diatur. Saya bisa bantu seputar website dan layanan About Campus ID, atau pilih /menu untuk melihat shortcut.",
           suggestions: ["/menu", "/layanan", "/partnership"],
           links: [
             { label: "Menu", href: ASSISTANT_LINKS.menu },
