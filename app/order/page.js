@@ -1,13 +1,16 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import SubpageShell from "../components/SubpageShell";
 import {
   FOLLOW_TARGET_ACCOUNT,
   REQUIRED_FOLLOW_COUNT,
   parsePastedList,
 } from "../../lib/partnership-requirements";
+
+const ORDER_DRAFT_KEY = "aboutcampus_order_draft";
+const ORDER_TOKEN_KEY = "fb_id_token";
 
 const initialForm = {
   customerName: "",
@@ -25,6 +28,7 @@ const initialForm = {
 };
 
 function OrderPageContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const selectedPlan = searchParams.get("plan") === "PAID" ? "PAID" : "FREE";
   const [form, setForm] = useState(initialForm);
@@ -45,11 +49,50 @@ function OrderPageContent() {
   useEffect(() => {
     resetPaidFlow();
     setMessage("");
-    setForm({
+
+    let restoredForm = {
       ...initialForm,
       orderType: selectedPlan,
-    });
+    };
+
+    try {
+      const rawDraft = sessionStorage.getItem(ORDER_DRAFT_KEY);
+      if (rawDraft) {
+        const draft = JSON.parse(rawDraft);
+        restoredForm = {
+          ...restoredForm,
+          ...draft,
+          orderType: selectedPlan,
+        };
+      }
+    } catch {
+      // ignore draft parse errors
+    }
+
+    setForm(restoredForm);
   }, [selectedPlan]);
+
+  const saveDraft = (nextForm) => {
+    try {
+      sessionStorage.setItem(
+        ORDER_DRAFT_KEY,
+        JSON.stringify({
+          ...nextForm,
+          orderType: selectedPlan,
+        })
+      );
+    } catch {
+      // ignore storage errors
+    }
+  };
+
+  const clearDraft = () => {
+    try {
+      sessionStorage.removeItem(ORDER_DRAFT_KEY);
+    } catch {
+      // ignore storage errors
+    }
+  };
 
   const followedAccounts = parsePastedList(form.followedAccountsRaw);
 
@@ -76,8 +119,17 @@ function OrderPageContent() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
     setMessage("");
+
+    const idToken = typeof window !== "undefined" ? localStorage.getItem(ORDER_TOKEN_KEY) : "";
+    if (!idToken) {
+      saveDraft(form);
+      const nextUrl = `/order?plan=${selectedPlan}`;
+      router.push(`/login?next=${encodeURIComponent(nextUrl)}`);
+      return;
+    }
+
+    setLoading(true);
 
     if (!form.orderDetails.trim()) {
       setMessage("Detail order wajib diisi.");
@@ -105,6 +157,7 @@ function OrderPageContent() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${idToken}`,
         },
         body: JSON.stringify({
           customerName: form.customerName,
@@ -136,6 +189,7 @@ function OrderPageContent() {
           setMessage(
             `Order berhasil dibuat dengan nomor ${result.orderNumber}. Tim admin akan segera memproses.`
           );
+          clearDraft();
           setForm(initialForm);
         }
       }

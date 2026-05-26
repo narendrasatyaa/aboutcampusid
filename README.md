@@ -50,6 +50,11 @@ Untuk notif WhatsApp otomatis, isi juga:
 - `WHATSAPP_API_TOKEN`
 - `WHATSAPP_ADMIN_PHONE`
 
+Untuk AI assistant Qrok, isi juga:
+
+- `GROQ_API_KEY`
+- `GROQ_MODEL`
+
 4. Jalankan migration database
 
 ```bash
@@ -69,6 +74,23 @@ npm run dev
 3. API kirim notif WhatsApp ke admin
 4. Admin buka `/admin/orders`
 5. Admin update status: `NEW`, `PROCESSING`, `DONE`, `CANCELED`
+
+## AI Assistant Qrok
+
+Qrok adalah assistant website yang menjawab seputar About Campus ID, terutama fitur, layanan, dan alur order.
+
+Command yang didukung:
+
+- `/menu`
+- `/layanan`
+- `/partnership`
+- `/free`
+- `/paid`
+- `/research`
+- `/store`
+- `/kontak`
+
+Assistant ini memakai Groq di server-side lewat endpoint `POST /api/assistant`. Jika `GROQ_API_KEY` belum diisi, sistem akan fallback ke jawaban menu dasar.
 
 ## Catatan Integrasi WhatsApp
 

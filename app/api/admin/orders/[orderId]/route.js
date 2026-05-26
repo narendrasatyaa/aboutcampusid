@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { prisma } from "../../../../../lib/prisma";
+import { firestore } from "../../../../../lib/firebase-admin";
 import {
   ADMIN_SESSION_COOKIE,
   verifyAdminKeyValue,
@@ -98,6 +99,22 @@ export async function PATCH(request, { params }) {
     where: { id: orderId },
     data,
   });
+
+  if (firestore) {
+    await firestore.collection("orders").doc(updated.orderNumber).set(
+      {
+        orderNumber: updated.orderNumber,
+        status: updated.status,
+        customerName: updated.customerName,
+        phone: updated.phone,
+        serviceType: updated.serviceType,
+        orderType: updated.orderType,
+        instagramUsername: updated.instagramUsername || null,
+        updatedAt: new Date().toISOString(),
+      },
+      { merge: true }
+    );
+  }
 
   await prisma.orderLog.create({
     data: {

@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { prisma } from "../../../lib/prisma";
 import { sendWhatsAppNotification } from "../../../lib/whatsapp";
+import { firestore, verifyIdToken } from "../../../lib/firebase-admin";
 import {
   FOLLOW_TARGET_ACCOUNT,
   REQUIRED_FOLLOW_COUNT,
@@ -37,6 +38,19 @@ function createOrderNumber() {
 
 export async function POST(request) {
   try {
+    // optional Firebase ID token in Authorization header: 'Bearer <idToken>'
+    const authHeader = request.headers.get("authorization") || request.headers.get("Authorization");
+    let actor = "system";
+    if (authHeader && authHeader.startsWith("Bearer ")) {
+      const idToken = authHeader.split(" ")[1];
+      try {
+        const decoded = await verifyIdToken(idToken);
+        actor = decoded.uid || "system";
+      } catch (err) {
+        return Response.json({ error: "Invalid authentication token" }, { status: 401 });
+      }
+    }
+
     const body = await request.json();
     const parsed = orderSchema.safeParse(body);
 
@@ -128,11 +142,27 @@ export async function POST(request) {
       },
     });
 
+    if (firestore) {
+      await firestore.collection("orders").doc(orderNumber).set({
+        orderNumber,
+        userUid: actor !== "system" ? actor : null,
+        customerName: order.customerName,
+        phone: order.phone,
+        serviceType: order.serviceType,
+        orderType: order.orderType,
+        instagramUsername: order.instagramUsername || null,
+        status: order.status,
+        paymentProofFileName: order.paymentProofFileName || null,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      });
+    }
+
     await prisma.orderLog.create({
       data: {
         orderId: order.id,
         action: "ORDER_CREATED",
-        actor: "system",
+        actor,
       },
     });
 

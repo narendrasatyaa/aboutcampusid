@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { prisma } from "../../../../lib/prisma";
 import { sendWhatsAppNotification } from "../../../../lib/whatsapp";
+import { firestore } from "../../../../lib/firebase-admin";
 
 const paymentProofSchema = z.object({
   orderNumber: z.string().min(8, "Nomor order tidak valid"),
@@ -49,6 +50,18 @@ export async function POST(request) {
         paymentProofFileName: parsed.data.paymentProofFileName,
       },
     });
+
+    if (firestore) {
+      await firestore.collection("orders").doc(updatedOrder.orderNumber).set(
+        {
+          orderNumber: updatedOrder.orderNumber,
+          paymentProofFileName: updatedOrder.paymentProofFileName || null,
+          status: updatedOrder.status,
+          updatedAt: new Date().toISOString(),
+        },
+        { merge: true }
+      );
+    }
 
     await prisma.orderLog.create({
       data: {

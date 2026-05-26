@@ -6,7 +6,7 @@ export default function PaidPartnershipPage() {
       <section className="order-section">
         <div className="wrap" style={{ maxWidth: 960 }}>
           <div className="sec-head" style={{ marginBottom: 24 }}>
-            <div className="sec-label">Paid Partnership</div>
+            {/* <div className="sec-label">Paid Partnership</div> */}
             <h1 className="sec-title">Order berbayar dengan QRIS statis</h1>
             {/* <p className="sec-sub">
               Pilih paket paid untuk publikasi yang lebih cepat diproses. Setelah payment, order masuk ke dashboard admin utama.

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import AiAssistantLauncher from "./AiAssistantLauncher";
 
 export default function SubpageShell({ children }) {
   const pathname = usePathname();
@@ -62,78 +63,78 @@ export default function SubpageShell({ children }) {
       <div className="subpage-shell">
         <header className={`subpage-header ${isScrolled ? "is-scrolled" : ""}`} id="header">
           <div className="bar">
-            <a href="/" className="logo" style={{ textDecoration: "none" }}>
-              <div className="logo-icon">
-                <img src="/images/logo-bg.png" alt="About Campus ID Logo" />
-              </div>
-            </a>
-            <nav className={menuOpen ? "open" : ""}>
-              <ul>
-                <li className="nav-has-submenu">
-                  <span className={`nav-parent ${isServiceActive ? "active-link" : ""}`}>
-                    Layanan <i className="fas fa-chevron-down" />
-                  </span>
-                  <div className="nav-mega-panel nav-mega-services">
-                    <div className="nav-mega-head">
-                      <div className="nav-mega-kicker">Layanan</div>
-                      <h3>Program aktif dan layanan coming soon</h3>
-                      <p>Pilih layanan yang sesuai, dari partnership sampai program yang masih disiapkan.</p>
+            <div className="bar-left">
+              <a href="/" className="logo" style={{ textDecoration: "none" }}>
+                <div className="logo-icon">
+                  <img src="/images/logo-bg.png" alt="About Campus ID Logo" />
+                </div>
+              </a>
+              <nav className={menuOpen ? "open" : ""}>
+                <ul>
+                  <li className="nav-has-submenu">
+                    <span className={`nav-parent ${isServiceActive ? "active-link" : ""}`}>
+                      Layanan <i className="fas fa-chevron-down" />
+                    </span>
+                    <div className="nav-mega-panel nav-mega-services">
+                      <div className="nav-mega-grid">
+                        {serviceItems.map((item) => (
+                          <a key={item.href} href={item.href} className="nav-mega-card">
+                            <div className="nav-mega-icon"><i className={`fas ${item.icon}`} /></div>
+                            <div>
+                              <h4>{item.title}</h4>
+                              <p>{item.description}</p>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
                     </div>
-                    <div className="nav-mega-grid">
-                      {serviceItems.map((item) => (
-                        <a key={item.href} href={item.href} className="nav-mega-card">
-                          <div className="nav-mega-icon"><i className={`fas ${item.icon}`} /></div>
-                          <div>
-                            <h4>{item.title}</h4>
-                            <p>{item.description}</p>
-                          </div>
-                        </a>
-                      ))}
+                  </li>
+                  <li className="nav-has-submenu">
+                    <span className="nav-parent">
+                      Informasi <i className="fas fa-chevron-down" />
+                    </span>
+                    <div className="nav-mega-panel nav-mega-info">
+                      <div className="nav-mega-list">
+                        {infoItems.map((item) => (
+                          <a key={item.href} href={item.href} className="nav-mega-card nav-mega-card-list">
+                            <div className="nav-mega-icon"><i className={`fas ${item.icon}`} /></div>
+                            <div>
+                              <h4>{item.title}</h4>
+                              <p>{item.description}</p>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li className="nav-has-submenu">
-                  <span className="nav-parent">
-                    Informasi <i className="fas fa-chevron-down" />
-                  </span>
-                  <div className="nav-mega-panel nav-mega-info">
-                    <div className="nav-mega-head">
-                      <div className="nav-mega-kicker">Informasi</div>
-                      <h3>Info ringkas sebelum order</h3>
-                      <p>Isi layanan, testimoni, dan jalur kontak kami rangkum supaya cepat dipahami.</p>
-                    </div>
-                    <div className="nav-mega-list">
-                      {infoItems.map((item) => (
-                        <a key={item.href} href={item.href} className="nav-mega-card nav-mega-card-list">
-                          <div className="nav-mega-icon"><i className={`fas ${item.icon}`} /></div>
-                          <div>
-                            <h4>{item.title}</h4>
-                            <p>{item.description}</p>
-                          </div>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </li>
-                <li><a href="/" className="nav-cta">Kembali Beranda</a></li>
-              </ul>
-              {/* <div className="nav-mobile-links">
-                <a href="/">Beranda</a>
-                <a href="/partnership">Partnership</a>
-                <a href="/order">Order</a>
-                <a href="/layanan/partnership">Layanan</a>
-                <a href="/layanan/research">Research</a>
-                <a href="/layanan/store">Store</a>
-              </div> */}
-            </nav>
-            <button
-              type="button"
-              className={`menu-toggle ${menuOpen ? "open" : ""}`}
-              onClick={() => setMenuOpen((prev) => !prev)}
-              aria-label="Toggle menu"
-            >
-              <i className={`fas ${menuOpen ? "fa-times" : "fa-bars"}`} />
-            </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+            <div className="bar-right">
+              <nav className={menuOpen ? "open" : ""}>
+                <ul>
+                  <li>
+                    <a href="https://drive.google.com/file/d/1e0aiAnv6rpkgbUYmo4UCUOvoE4NCTDTZ/view?usp=sharing" className="nav-cta" target="_blank" rel="noreferrer">
+                      Panduan Media Patner
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://wa.me/6285226446178?text=Halo%20Admin%20About%20Campus%20ID" className="nav-cta" target="_blank" rel="noreferrer">
+                      WhatsApp
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <button
+                type="button"
+                className={`menu-toggle ${menuOpen ? "open" : ""}`}
+                onClick={() => setMenuOpen((prev) => !prev)}
+                aria-label="Toggle menu"
+              >
+                <i className={`fas ${menuOpen ? "fa-times" : "fa-bars"}`} />
+              </button>
+            </div>
           </div>
         </header>
 
@@ -167,8 +168,9 @@ export default function SubpageShell({ children }) {
                 <h4>Link Cepat</h4>
                 <ul>
                   <li><a href="/">Beranda</a></li>
-                  {/* <li><a href="/layanan/partnership">Partnership Center</a></li> */}
-                  {/* <li><a href="/admin/orders">Dashboard Admin</a></li> */}
+                  <li><a href="/layanan/partnership">Partnership Center</a></li>
+                  <li><a href="/layanan/research">Research & Consulting</a></li>
+                  <li><a href="/layanan/store">Store</a></li>
                 </ul>
               </div>
               <div>
@@ -180,19 +182,11 @@ export default function SubpageShell({ children }) {
               </div>
             </div>
           </div>
-          <div className="copyright">&copy; 2021-2026 About Campus ID.</div>
+          <div className="copyright">&copy; {new Date().getFullYear()} About Campus ID.</div>
         </footer>
       </div>
 
-      <a
-        className="floating-wa"
-        href="https://wa.me/6285226446178?text=Halo%20Admin%20About%20Campus%20ID"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Chat WhatsApp"
-      >
-        <i className="fab fa-whatsapp" />
-      </a>
+      <AiAssistantLauncher />
     </>
   );
 }
